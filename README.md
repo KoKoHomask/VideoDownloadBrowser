@@ -1,12 +1,9 @@
-CefSharp.MinimalExample
+视频下载浏览器
 =======================
 
-Minimal example of how the CefSharp library can be used using the official `Nuget` packages. 
+基于CefSharp 63.0.0
 
-Includes examples for
-- WinForms
-- WPF
-- OffScreen
- 
+原理：
+利用RequestHandler，检测所有的页面请求，当检测到符合下载文件时，将此文件保存到本地
 
-For a more complete example of each project see the main `CefSharp` repository.
+
