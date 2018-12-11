@@ -1,0 +1,21 @@
+﻿<Window x:Class="视频下载器.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:视频下载器"
+        xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        mc:Ignorable="d"
+        Title="{Binding ElementName=Browser,Path=Title}" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding ElementName=stp,Path=Height}"/>
+            <RowDefinition Height="376*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"  Name="stp">
+            <TextBox Name="tbUrl" HorizontalAlignment="Stretch" Text="在此贴入Url并点击开始"/>
+            <Button Name="btnGO" Click="BtnGO_Click" Content="开始"/>
+        </StackPanel>
+        <cefSharp:ChromiumWebBrowser x:Name="Browser" Address="https://www.nitalk.com" Grid.Row="1" />
+    </Grid>
+</Window>
