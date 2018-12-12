@@ -25,7 +25,7 @@ namespace 视频下载器
         public MainWindow()
         {
             InitializeComponent();
-            request request = new request(new List<string>() { ".ts" });
+            request request = new request(new List<string>() { ".ts",".hxk" });
             request.NotifyMsg += Request_NotifyMsg;
             Browser.RequestHandler = request;
             Browser.LifeSpanHandler = new OpenPageSelf();
@@ -42,9 +42,9 @@ namespace 视频下载器
         }
 
         
-        private void Request_NotifyMsg(byte[] obj)
+        private void Request_NotifyMsg(string fileType,byte[] obj)
         {
-            using (FileStream fs = new FileStream(bwTitle + ++index + ".ts", FileMode.Create))
+            using (FileStream fs = new FileStream(bwTitle + ++index + fileType, FileMode.Create))
             {
                 fs.Position = fs.Length;
                 fs.Write(obj, 0, obj.Length);
@@ -59,7 +59,21 @@ namespace 视频下载器
             //    Browser.Address = tbUrl.Text;
             //}
             Browser.Address = tbUrl.Text;
-            
+
+            //string EvaluateJavaScriptResult;
+            //var frame = Browser.GetMainFrame();
+            //var task = Browser.EvaluateScriptAsync("(function() { return document.getElementById('searchInput').value; })();", null);
+
+            //task.ContinueWith(t =>
+            //{
+            //    if (!t.IsFaulted)
+            //    {
+            //        var response = t.Result;
+            //        EvaluateJavaScriptResult = response.Success ? (response.Result.ToString() ?? "null") : response.Message;
+            //        MessageBox.Show(EvaluateJavaScriptResult);
+            //    }
+            //}, TaskScheduler.FromCurrentSynchronizationContext());
+
         }
         public static bool IsUrl(string str)
         {

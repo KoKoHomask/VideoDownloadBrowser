@@ -132,7 +132,7 @@ IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptA
     public class request : IRequestHandler
     {
         public List<string> downloadLst;
-        public event Action<byte[]> NotifyMsg;
+        public event Action<string,byte[]> NotifyMsg;
         /// <summary>
         /// 传入要判定下载的lst
         /// </summary>
@@ -234,7 +234,7 @@ IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptA
                 if (request.Url.Contains(single))
                 {
                     var filter = FilterManager.GetFileter(request.Identifier.ToString()) as TestFilter;
-                    NotifyMsg?.Invoke(filter.dataAll.ToArray());
+                    NotifyMsg?.Invoke(single,filter.dataAll.ToArray());
                     FilterManager.RemoveFileter(request.Identifier.ToString());
                     break;
                 }
